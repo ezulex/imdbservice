@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>IMDB control system</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <h1>IMDB control system</h1>
+  <a th:href = "@{/}" class="btn btn-sm mb-3 btn-info"> Главная страница </a>
+  <a th:href = "@{/users}" class="btn btn-sm mb-3 btn-info"> Список пользователей </a>
+
+  <hr>
+  <h2>Update User</h2>
+
+
+  <form action="#" th:action="@{/users/saveUser}" th:object="${user}"
+        method="POST">
+
+    <!-- Add hidden form field to handle update -->
+    <input type="hidden" th:field="*{id}" />
+
+    <input required type="text" th:field="*{name}" class="form-control mb-4 col-4">
+
+    <input required type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
+
+    <input required type="text" th:field="*{department}" class="form-control mb-4 col-4">
+
+    <input required type="text" th:field="*{position}" class="form-control mb-4 col-4">
+
+
+    <button type="submit" class="btn btn-info col-2"> Update User</button>
+  </form>
+
+  <hr>
+</div>
+</body>
+</html>

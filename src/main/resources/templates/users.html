@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Система учёта оборудования - IMDB Control System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Список пользователей</h1>
+    <a th:href = "@{/}" class="btn btn-sm mb-3 btn-info"> Главная страница </a>
+    <a th:href = "@{/users/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Добавить пользователя </a>
+    <table class = "table table-striped table-responsive-md table-bordered table-sm">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Должность</th>
+                <th>Отдел</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${listUsers}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.position}"></td>
+                <td th:text="${user.department}"></td>
+                <td><a th:href="@{/users/showFormForUpdate/{id}(id=${user.id})}" class="btn btn-primary btn-sm">Изменить</a>
+                    <a th:href="@{/users/deleteUser/{id}(id=${user.id})}" class="btn btn-danger btn-sm">Удалить</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

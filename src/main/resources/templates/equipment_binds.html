@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Система учёта оборудования - IMDB Control System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Список выданного оборудования</h1>
+    <a th:href = "@{/}" class="btn btn-sm mb-3 btn-info"> Главная страница </a>
+    <a th:href = "@{/equipment_binds/showNewEquipmentBindForm}" class="btn btn-primary btn-sm mb-3"> Выдать оборудование </a>
+    <table class = "table table-striped table-responsive-md table-bordered table-sm">
+        <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Оборудование</th>
+                <th>Дата выдачи</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ebind : ${listEquipmentBind}">
+                <td th:text="${ebind.user.name} + ' ' + ${ebind.user.lastName}"></td>
+                <td th:text="${ebind.equipment.brand} + ' ' + ${ebind.equipment.model} + ' (' + ${ebind.equipment.type} + ') (' + ${ebind.equipment.serialNumber} + ')'"></td>
+                <td th:text="${ebind.issueDate}"></td>
+                <td><a th:href="@{/equipment_binds/showFormForUpdateEquipmentBind/{id}(id=${ebind.id})}" class="btn btn-primary btn-sm">Изменить</a>
+                    <a th:href="@{/equipment_binds/deleteEquipmentBind/{id}(id=${ebind.id})}" class="btn btn-danger btn-sm">Удалить</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
